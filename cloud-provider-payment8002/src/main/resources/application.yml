@@ -1,5 +1,20 @@
 server:
-  port: 8080
+  port: 8002
+
+spring:
+  application:
+    # 服务名称
+    name: cloud-provider-payment
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: org.gjt.mm.mysql.Driver
+    url: jdbc:mysql://localhost:3306/springcloud?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 123456
+
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+  type-aliases-package: com.hanlin.springcloud.entities
 
 # eureka配置
 eureka:
@@ -14,12 +29,8 @@ eureka:
       defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka  #集群环境配置
   # actuator信息完善
   instance:
-    instance-id: order8080
+    instance-id: payment8002
     prefer-ip-address: true
-spring:
-  application:
-    name: cloud-consumer-order
-
 
 # 用来展示项目的基本信息
 info:

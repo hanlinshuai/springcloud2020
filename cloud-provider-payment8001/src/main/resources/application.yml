@@ -25,4 +25,16 @@ eureka:
     fetch-registry: true
     service-url:
       #设置与eureka server交互的地址查询服务和注册服务都需要依赖这个地址
-      defaultZone: http://localhost:7001/eureka/
+#      defaultZone: http://localhost:7001/eureka/
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka  #集群环境配置
+  # actuator信息完善
+  instance:
+    instance-id: payment8001
+    prefer-ip-address: true
+
+# 用来展示项目的基本信息
+info:
+  author.name: hl.yuan
+  app.name: springcloud
+  server.port: ${server.port}
+  application.name: ${spring.application.name}
