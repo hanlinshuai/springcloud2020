@@ -3,6 +3,7 @@ server:
 
 spring:
   application:
+    # 服务名称
     name: cloud-provider-payment
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
@@ -14,3 +15,14 @@ spring:
 mybatis:
   mapperLocations: classpath:mapper/*.xml
   type-aliases-package: com.hanlin.springcloud.entities
+
+# eureka配置
+eureka:
+  client:
+    # 是否将自己注册到eureka里
+    register-with-eureka: true
+    # 是否从eurekaserver抓取已有的注册信息，集群环境会用到
+    fetch-registry: true
+    service-url:
+      #设置与eureka server交互的地址查询服务和注册服务都需要依赖这个地址
+      defaultZone: http://localhost:7001/eureka/
