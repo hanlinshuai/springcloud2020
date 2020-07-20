@@ -30,7 +30,12 @@ eureka:
   # actuator信息完善
   instance:
     instance-id: payment8001
+    # 是否显示ip信息
     prefer-ip-address: true
+    # eureka客户端向server端发送服务的时间，单位秒
+    lease-renewal-interval-in-seconds: 1
+    # eureka服务端在收到最后一次心跳后等待时间，单位秒
+    lease-expiration-duration-in-seconds: 2
 
 # 用来展示项目的基本信息
 info:

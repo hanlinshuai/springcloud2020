@@ -6,8 +6,12 @@ import com.hanlin.springcloud.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author:hl.yuan
@@ -23,6 +27,9 @@ public class PaymentController {
 
     @Value("${server.port}")
     private String ServerPort;
+
+    @Autowired
+    private DiscoveryClient discoveryClient;
 
     @GetMapping("/payment/get/{id}")
     public CommonResult getPaymentList(@PathVariable("id") Long id){
@@ -43,5 +50,18 @@ public class PaymentController {
         } else {
             return new CommonResult("500","保存失败");
         }
+    }
+
+    @GetMapping("/payment/discovery")
+    public Object discovery(){
+        List<String> services = discoveryClient.getServices();
+        for (String element : services) {
+            log.info("***** element:"+element);
+        }
+        List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PROVIDER-PAYMENT");
+        for (ServiceInstance instance : instances) {
+            log.info(instance.getServiceId()+"\t"+instance.getHost()+"\t"+instance.getPort()+"\t"+instance.getUri());
+        }
+        return this.discoveryClient;
     }
 }
