@@ -9,7 +9,7 @@ eureka:
     fetch-registry: false   #表示自己就是注册中心，职责是维护服务实例，并不需要去检索服务
     service-url:
       #设置与eureka server交互的地址查询服务和注册服务都需要依赖这个地址
-      defaultZone: http://eureka7002.com:7002/eureka/
+      defaultZone: http://eureka7001.com:7001/eureka/
   server:
     # eureka的自我保护机制：false 关闭，true打开
     enable-self-preservation: true
