@@ -48,4 +48,15 @@ public class PaymentController {
         return serverPort+"：服务超时或者服务出错，进行服务降级，o(╥﹏╥)o";
     }
 
+
+
+
+    //===服务熔断
+    @GetMapping("/payment/circuit/{id}")
+    public String paymentCircuitBreaker(@PathVariable("id") Integer id){
+        String result = paymentService.paymentCircuitBreaker(id);
+        log.info("*******result:"+result);
+        return result;
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.hanlin.springcloud.controller;
 
 import com.hanlin.springcloud.service.PaymentHystrixService;
+import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +18,7 @@ import javax.annotation.Resource;
  */
 @RestController
 @Slf4j
+@DefaultProperties(defaultFallback = "defaultFallback")
 public class OrderHystrixController {
 
     @Resource
@@ -26,7 +28,9 @@ public class OrderHystrixController {
     private String serverPort;
 
     @GetMapping("/consumer/payment/hystrix/ok/{id}")
+    @HystrixCommand
     public String paymentInfo_OK(@PathVariable("id") Integer id){
+//        int a = 1/0;
         String result = paymentHystrixService.paymentInfo_OK(id);
         log.info("*******result:"+result);
         return result;
@@ -44,7 +48,12 @@ public class OrderHystrixController {
 
 
     public String paymentInfo_TimeOutFallback(@PathVariable("id") Integer id){
-        return "我是消费者80，对付支付系统繁忙请10秒钟后再试或者自己运行出错请检查自己,(┬＿┬)";
+        return "我是消费者80，对方支付系统繁忙请10秒钟后再试或者自己运行出错请检查自己,(┬＿┬)";
+    }
+
+    public String defaultFallback (Throwable throwable) {
+        log.error("进入兜底方法,错误日志：",throwable);
+        return "***** defaultFallback ****";
     }
 
 
