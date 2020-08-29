@@ -11,6 +11,7 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -32,7 +33,7 @@ public class PaymentController {
     private DiscoveryClient discoveryClient;
 
     @GetMapping("/payment/get/{id}")
-    public CommonResult getPaymentList(@PathVariable("id") Long id){
+    public CommonResult getPaymentList(@PathVariable("id") Long id, HttpServletRequest request){
         Payment paymentById = paymentService.getPaymentById(id);
         log.info("获取成功");
         if (paymentById!=null) {
