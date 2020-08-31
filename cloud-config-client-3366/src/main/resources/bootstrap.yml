@@ -1,5 +1,5 @@
 server:
-  port: 3355
+  port: 3366
 
 spring:
   application:
@@ -17,10 +17,6 @@ spring:
     password: guest
 eureka:
   client:
-    # 是否将自己注入eureka
-    register-with-eureka: true
-    # 是否去检索eureka里的服务
-    fetch-registry: true
     service-url:
       defaultZone: http://eureka7001.com:7001/eureka
 
@@ -29,3 +25,4 @@ management:
     web:
       exposure:
         include: "*"
+

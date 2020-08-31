@@ -11,6 +11,11 @@ spring:
           search-paths:
             - springcloud-config
       label: master
+  rabbitmq:
+    host: 192.168.229.128
+    port: 5672
+    username: guest
+    password: guest
 eureka:
   client:
     # 是否将自己注入eureka
@@ -19,3 +24,8 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone:  http://localhost:7001/eureka
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'bus-refresh'

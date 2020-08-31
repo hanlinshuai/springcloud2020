@@ -21,6 +21,8 @@
         <module>cloud-gateway-gateway9527</module>
         <module>cloud-config-center-3344</module>
         <module>cloud-config-center-3355</module>
+        <module>cloud-config-client-3366</module>
+        <module>cloudalibaba-provider-payment9001</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -59,6 +61,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!--引入springcloudalibaba-->
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
