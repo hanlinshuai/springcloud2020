@@ -30,6 +30,9 @@
         <module>cloudalibaba-provider-payment9003</module>
         <module>cloudalibaba-provider-payment9004</module>
         <module>cloudalibaba-consumer-nacos-order84</module>
+        <module>seata-order-service2001</module>
+        <module>seata-order-service2002</module>
+        <module>seata-order-service2003</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -72,7 +75,9 @@
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>2.1.0.RELEASE</version>
+                <version>2.2.1.RELEASE</version>
+                <!--如果需要使用seata1.2版本以上的，这里的alibabab-dependencies版本需要改变！！！巨坑啊，搞了一晚上。。。-->
+<!--                <version>2.1.0.RELEASE</version>-->
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
